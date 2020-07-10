@@ -1,8 +1,10 @@
 # Black Ops Rawfile Injector Steam
  A tool to dump and overwrite/inject rawfile assets for SP/ZM & MP modes in Call of Duty: Black Ops [Steam]. 
 
+ #Requires .NET Framework 4.8
 
- This tool uses data provided by the COD Engine Research Community (https://wiki.orbismodding.com/index.php/Main_Page) and Jake625. This tool also uses my open source MemoryLib API to interact with process memory in real-time.
+
+ This tool uses data provided by the COD Engine Research Community (https://wiki.orbismodding.com/index.php/Main_Page) and Jake625. This tool also uses my open source [MemoryLib API](https://github.com/Coreyx86/MemoryLib) to interact with process memory in real-time.
 
 
 

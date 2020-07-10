@@ -1,0 +1,39 @@
+﻿<Window
+        x:Class="BlackOpsGSCInjector.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BlackOpsGSCInjector"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        mc:Ignorable="d"
+        Title="Black Ops 1 GameScript Injector" Height="462" Width="741.667" ResizeMode="NoResize">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="345*"/>
+            <ColumnDefinition Width="389*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnOpenFolder" Click="btnOpenFolder_Click" Content="Open Project Folder" Margin="23,28,0,371" />
+        <Label x:Name="lblProjectPath" Content="..." HorizontalAlignment="Left"  Margin="169,28,0,0" VerticalAlignment="Top"/>
+        <Label Content="Created by Coreyx86" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1"/>
+
+        <Button x:Name="btnInject" Content="Inject Project" Margin="23,70,0,329" Style="{StaticResource AccentButtonStyle}" Click="btnInject_Click" />
+        <Button x:Name="btnDump" Content="Dump Rawfiles" Margin="261,70,0,329" Style="{StaticResource AccentButtonStyle}" Click="btnDump_Click" Grid.Column="1" />
+        <RichTextBox x:Name="txtOutput" HorizontalAlignment="Left" Height="280" Margin="23,127,0,0" VerticalAlignment="Top" Width="694" Grid.ColumnSpan="2">
+            <FlowDocument>
+                <Paragraph>
+
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Label Content="Output:" HorizontalAlignment="Left"  Margin="30,107,0,0" VerticalAlignment="Top"/>
+
+
+
+    </Grid>
+
+
+</Window>
