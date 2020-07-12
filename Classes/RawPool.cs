@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ionic.Zlib;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -170,7 +171,7 @@ namespace BlackOpsGSCInjector
 
                 if (!string.IsNullOrEmpty(name))
                 {
-                    byte[] buffer = Manager.obj.memory.Extension.ReadBytes(rawfile.BufferPointer, rawfile.Length);
+                    byte[] CompressedBuffer = Manager.obj.memory.Extension.ReadBytes(rawfile.BufferPointer, rawfile.Length);
 
                     if (name.Contains("/"))
                     {
@@ -186,7 +187,25 @@ namespace BlackOpsGSCInjector
                     }
 
                     string path = name.Replace("//", @"\").Replace("/", @"\");
-                    File.WriteAllBytes(dumpLocationPath + @"\" + path, buffer);
+
+
+                    //Decompress the script file data here
+                    if (path.EndsWith(".gsc") || path.EndsWith(".csc"))
+                    {
+                        int DecompressedLength = Helper.ReadIntFromByteArray(CompressedBuffer, 0);
+
+#if DEBUG
+                        Console.WriteLine("Dumped: " + name + " decompressed len = " + DecompressedLength);
+#endif
+                        byte[] CompressedData = Helper.RangeSubset<byte>(CompressedBuffer, 8, CompressedBuffer.Length - 8); // - 8 to account for the 8 bytes from the 2 ints
+                        string DecompressedString = ZlibStream.UncompressString(CompressedData).Replace("\0", "");
+                        File.WriteAllText(dumpLocationPath + @"\" + path, DecompressedString);
+
+                    }
+                    else
+                    {
+                        File.WriteAllBytes(dumpLocationPath + @"\" + path, CompressedBuffer);
+                    }
 
                     count++;
                 }
